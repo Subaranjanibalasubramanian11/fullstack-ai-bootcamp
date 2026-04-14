@@ -30,8 +30,6 @@
 ---
 
 ## 📂 Folder Structure
-
-
 fullstack-ai-bootcamp/
 └── Day1/
 ├── src/
@@ -41,7 +39,7 @@ fullstack-ai-bootcamp/
 │ ├── index.js
 │ └── App.css
 ├── public/
-├── package.json
+└── package.json
 
 
 ---
