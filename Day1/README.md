@@ -30,17 +30,19 @@
 ---
 
 ## 📂 Folder Structure
+
+<pre>
 fullstack-ai-bootcamp/
 └── Day1/
-├── src/
-│ ├── components/
-│ │ └── StudentCard.js
-│ ├── App.js
-│ ├── index.js
-│ └── App.css
-├── public/
-└── package.json
-
+    ├── src/
+    │   ├── components/
+    │   │   └── StudentCard.js
+    │   ├── App.js
+    │   ├── index.js
+    │   └── App.css
+    ├── public/
+    └── package.json
+</pre>
 
 ---
 
