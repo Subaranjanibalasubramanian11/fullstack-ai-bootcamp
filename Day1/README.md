@@ -1,37 +1,60 @@
 # 🚀 Full Stack Development with AI Bootcamp
 
 ## 👩‍💻 Student Information
-- **Name:** Subaranjani  
-- **Program:** Full Stack Development with AI Bootcamp  
+
+* **Name:** Subaranjani
+* **Program:** Full Stack Development with AI Bootcamp
 
 ---
 
 ## 📅 Day 1 - React Basics
 
 ### 📌 Topics Covered
-- ✅ Component Creation (StudentCard)
-- ✅ Props (Parent → Child communication)
-- ✅ useState (State Management)
-- ✅ Event Handling (Button Click)
-- ✅ Form UI (Handling user input)
+
+* ✅ Component Creation (StudentCard)
+* ✅ Props (Parent → Child communication)
+* ✅ useState (State Management)
+* ✅ Event Handling (Button Click)
+* ✅ Form UI (Handling user input)
+
+### 💻 Project: Student Dashboard App
+
+### ✨ Features
+
+* 🎓 Displays student details using reusable components
+* 🔄 Dynamic data using props
+* 🧠 State management with useState
+* 🖱️ Event handling with button click
+* 📝 Form input handling
+* 📊 Displays entered data on screen
 
 ---
 
-## 💻 Project: Student Dashboard App
+## 📅 Day 2 - Advanced React Concepts
+
+### 📌 Topics Covered
+
+* ✅ List Rendering using `map()`
+* ✅ Using unique `key` for lists
+* ✅ Form submission handling
+* ✅ Dynamic data update (Adding students)
+* ✅ Fetch API integration
+
+### 💻 Enhancements Added
 
 ### ✨ Features
-- 🎓 Displays student details using reusable components  
-- 🔄 Dynamic data using props  
-- 🧠 State management with useState  
-- 🖱️ Event handling with button click  
-- 📝 Form input handling  
-- 📊 Displays entered data on screen  
+
+* 📋 Display list of students dynamically
+* ➕ Add new student using form
+* 🔄 Real-time UI update after submission
+* 🌐 Fetch data from API
+* 👥 Display users from API
 
 ---
 
 ## 📂 Folder Structure
 
-<pre>
+```
 fullstack-ai-bootcamp/
 └── Day1/
     ├── src/
@@ -42,15 +65,17 @@ fullstack-ai-bootcamp/
     │   └── App.css
     ├── public/
     └── package.json
-</pre>
+```
 
 ---
 
 ## 🛠️ Technologies Used
-- ⚛️ React.js  
-- 🟨 JavaScript (ES6+)  
-- 🎨 CSS  
-- 🌐 HTML  
+
+* ⚛️ React.js
+* 🟨 JavaScript (ES6+)
+* 🎨 CSS
+* 🌐 HTML
+* 🌍 Fetch API
 
 ---
 
@@ -60,3 +85,20 @@ fullstack-ai-bootcamp/
 cd Day1
 npm install
 npm start
+```
+
+---
+
+## 📌 Outcome
+
+* Built a dynamic React application
+* Learned component-based architecture
+* Implemented state and event handling
+* Integrated API data fetching
+* Created interactive UI with real-time updates
+
+---
+
+## 🔗 GitHub Repository
+
+👉 https://github.com/Subaranjanibalasubramanian11/fullstack-ai-bootcamp
