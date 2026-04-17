@@ -1,61 +1,72 @@
 # 🚀 Full Stack Development with AI Bootcamp
 
 ## 👩‍💻 Student Information
-- **Name:** Subaranjani  
-- **Program:** Full Stack Development with AI Bootcamp  
+
+* **Name:** Subaranjani
+* **Program:** Full Stack Development with AI Bootcamp
 
 ---
 
 # 📅 Day 1 - React Basics
 
 ## 📌 Topics Covered
-- ✅ Component Creation (StudentCard)
-- ✅ Props (Parent → Child communication)
-- ✅ useState (State Management)
-- ✅ Event Handling (Button Click)
-- ✅ Form UI (Handling user input)
+
+* ✅ Component Creation (StudentCard)
+* ✅ Props (Parent → Child communication)
+* ✅ useState (State Management)
+* ✅ Event Handling (Button Click)
+* ✅ Form UI (Handling user input)
 
 ## 💻 Project: Student Dashboard
 
 ## ✨ Features
-- 🎓 Display student details using reusable components  
-- 🔄 Pass data using props  
-- 🧠 Manage state using useState  
-- 🖱️ Handle button click events  
-- 📝 Capture user input using form  
-- 📊 Display entered data dynamically  
+
+* 🎓 Display student details using reusable components
+* 🔄 Pass data using props
+* 🧠 Manage state using useState
+* 🖱️ Handle button click events
+* 📝 Capture user input using form
+* 📊 Display entered data dynamically
 
 ---
+
 ## 📸 Output Screenshots
 
 ### Student Card UI
+
 ![Day 1](./screenshots/day1.jpeg)
 
+---
 
 # 📅 Day 2 - Advanced React
 
 ## 📌 Topics Covered
-- ✅ List Rendering using `map()`
-- ✅ Unique keys for list items
-- ✅ Form submission handling
-- ✅ Dynamic data update
-- ✅ Fetch API integration
+
+* ✅ List Rendering using `map()`
+* ✅ Unique keys for list items
+* ✅ Form submission handling
+* ✅ Dynamic data update
+* ✅ Fetch API integration
 
 ## ✨ Features Added
-- 📋 Display student list dynamically  
-- ➕ Add new student using form  
-- 🔄 Real-time UI update  
-- 🌐 Fetch users from API  
-- 👥 Display API users in UI  
+
+* 📋 Display student list dynamically
+* ➕ Add new student using form
+* 🔄 Real-time UI update
+* 🌐 Fetch users from API
+* 👥 Display API users in UI
 
 ---
+
 ## 📸 Output Screenshots
 
 ### Student Dashboard + API + List Rendering
+
 ![Day 2](./screenshots/day2.jpeg)
 
+---
 
-## 📂 Folder Structure
+# 📂 Folder Structure
 
 ```
 fullstack-ai-bootcamp/
@@ -69,7 +80,7 @@ fullstack-ai-bootcamp/
 │   │   ├── index.js
 │   │   └── App.css
 │   ├── package.json
-│   └── README.md (frontend part if needed)
+│   └── README.md
 │
 ├── backend-day3/
 │   ├── index.js
@@ -84,7 +95,14 @@ fullstack-ai-bootcamp/
 │   ├── post.jpeg
 │   ├── get.jpeg
 │   ├── put.jpeg
-│   └── delete.jpeg
+│   ├── delete.jpeg
+│   ├── login.png
+│   ├── login1.png
+│   ├── protected.png
+│   ├── update.png
+│   ├── updateuser.png
+│   ├── console.png
+│   └── day4.png
 │
 └── README.md
 ```
@@ -94,88 +112,189 @@ fullstack-ai-bootcamp/
 # 📅 Day 3 - Backend Development (Node.js + MongoDB)
 
 ## 📌 Topics Covered
-- Express.js Server Setup
-- MongoDB Atlas Integration
-- CRUD API Development
-- Soft Delete Implementation
-- Postman API Testing
-- Environment Variables (.env)
+
+* Express.js Server Setup
+* MongoDB Atlas Integration
+* CRUD API Development
+* Soft Delete Implementation
+* Postman API Testing
+* Environment Variables (.env)
 
 ---
 
 ## ✨ Features Added
-- 🗄️ MongoDB Database Connection  
-- 📡 REST API for users  
-- ✏️ Update user data  
-- 🗑️ Soft delete using isDeleted flag  
-- 🔄 Postman testing  
+
+* 🗄️ MongoDB Database Connection
+* 📡 REST API for users
+* ✏️ Update user data
+* 🗑️ Soft delete using isDeleted flag
+* 🔄 Postman testing
 
 ---
 
 ## 🧪 API Endpoints
 
-- POST /users → Create user  
-- GET /users → Get all active users  
-- PUT /users/:id → Update user  
-- DELETE /users/:id → Soft delete user  
+* POST `/users` → Create user
+* GET `/users` → Get all active users
+* PUT `/users/:id` → Update user
+* DELETE `/users/:id` → Soft delete user
 
 ---
 
-# 📸 Postman API Screenshots
+## 📸 Postman API Screenshots
 
-## 🟢 Create User (POST)
+### 🟢 Create User (POST)
+
 ![POST](./screenshots/post.jpeg)
 
-## 🟢 Get Users (GET)
+### 🟢 Get Users (GET)
+
 ![GET](./screenshots/get.jpeg)
 
-## 🟢 Update User (PUT)
+### 🟢 Update User (PUT)
+
 ![PUT](./screenshots/put.jpeg)
 
-## 🟢 Soft Delete (DELETE)
+### 🟢 Soft Delete (DELETE)
+
 ![DELETE](./screenshots/delete.jpeg)
 
-## 🟢 Final GET (After Delete Check)
-![FINAL GET](./screenshots/get.jpeg)
+---
+
+# 📅 Day 4 - Frontend–Backend Integration & Authentication (JWT)
+
+## 📌 Topics Covered
+
+* 🔗 Frontend–Backend Integration
+* 🔐 JWT Authentication
+* 🛡️ Protected Routes
+* 💾 LocalStorage (Token storage)
+* 🔄 API Integration in React
+
+---
+
+## ✨ Features Added
+
+* 🔑 Login API with token generation
+* 💾 Store token in localStorage
+* 🛡️ Protected route (`/profile`)
+* ❌ Unauthorized access blocked
+* 🔄 Update user from frontend
+* 🎨 Attractive UI improvement
+
+---
+
+## 🔐 Authentication Flow
+
+1. Login → Token generated
+2. Token stored in browser
+3. Token sent via Authorization header
+4. Backend verifies token
+5. Access granted / denied
+
+---
+
+## 🧪 API Endpoints (Day 4)
+
+* POST `/login` → Generate token
+* GET `/profile` → Protected route
+* PUT `/users/:id` → Update user
+
+---
+
+# 📸 Day 4 Screenshots
+
+### 🔑 Login API (Token Generated)
+
+![Login](./screenshots/login.png)
+
+---
+
+### 🛡️ Protected Route (WITH Token)
+
+![Protected](./screenshots/protected.png)
+
+---
+
+### token image 
+
+![No Token](./screenshots/login1.png)
+
+---
+
+### ✏️ Update User from Frontend
+
+![Update](./screenshots/update.png)
+
+---
+
+### 💻 Final UI Output
+
+![UI](./screenshots/day4.png)
+
+---
+
+# 🔄 End-to-End Flow
+
+Frontend → Backend → Database → Response → UI
+
+✔ Login → Token
+✔ Token → Protected API
+✔ API → Database
+✔ Data → UI
 
 ---
 
 # 🛠️ Technologies Used
 
 ## Frontend
-- ⚛️ React.js  
-- 🟨 JavaScript (ES6+)  
-- 🎨 CSS  
-- 🌐 HTML  
-- 🌍 Fetch API  
+
+* ⚛️ React.js
+* 🟨 JavaScript (ES6+)
+* 🎨 CSS
+* 🌐 HTML
+* 🌍 Fetch API
 
 ## Backend
-- 🟢 Node.js  
-- 🚀 Express.js  
-- 🍃 MongoDB Atlas  
-- 📦 Mongoose  
-- 🔐 dotenv  
+
+* 🟢 Node.js
+* 🚀 Express.js
+* 🍃 MongoDB Atlas
+* 📦 Mongoose
+* 🔐 dotenv
+* 🔑 JSON Web Token (JWT)
 
 ---
 
 # ▶️ How to Run Project
 
-## Frontend
+## 🔹 Frontend
+
 ```bash
 cd student-dashboard-app
 npm install
 npm start
----
+```
 
-# 🛠️ Technologies Used
-- ⚛️ React.js  
-- 🟨 JavaScript (ES6+)  
-- 🎨 CSS  
-- 🌐 HTML  
-- 🌍 Fetch API  
+## 🔹 Backend
 
----
-**## Backend **
+```bash
 cd backend-day3
 npm install
 npx nodemon index.js
+```
+
+---
+
+# 🎯 Final Outcome
+
+✔ Full Stack Application Working
+✔ CRUD Operations Completed
+✔ Authentication Implemented
+✔ Protected APIs
+✔ Clean UI
+✔ GitHub Project Ready
+
+---
+
+# 🙌 Thank You
