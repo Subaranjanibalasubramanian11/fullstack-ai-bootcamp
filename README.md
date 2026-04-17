@@ -2,7 +2,7 @@
 
 ## 👩‍💻 Student Information
 
-* **Name:** Subaranjani
+* **Name:** Subaranjani K B 
 * **Program:** Full Stack Development with AI Bootcamp
 
 ---
