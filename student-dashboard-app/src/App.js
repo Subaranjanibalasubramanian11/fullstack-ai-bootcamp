@@ -1,183 +1,291 @@
 import React, { useState, useEffect } from "react";
-import StudentCard from "./components/StudentCard";
 
 function App() {
-  const [inputValue, setInputValue] = useState("");
+  const [students, setStudents] = useState([]);
+  const [message, setMessage] = useState("");
 
-  const [formData, setFormData] = useState({
+  const [showModal, setShowModal] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  const [editData, setEditData] = useState({
     name: "",
-    course: ""
+    email: ""
   });
 
-  // 🔵 Day2 - Student List
-  const [students, setStudents] = useState([
-    { id: 1, name: "Arun", course: "React" },
-    { id: 2, name: "Priya", course: "Node" },
-    { id: 3, name: "Rahul", course: "Python" },
-    { id: 4, name: "Sneha", course: "Java" },
-    { id: 5, name: "Kiran", course: "AI" }
-  ]);
-
-  // 🟣 Day2 - API Users
-  const [users, setUsers] = useState([]);
-
+  /* ---------------- FETCH USERS ---------------- */
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
+    fetch("http://localhost:3000/users")
+      .then(res => res.json())
+      .then(data => setStudents(data));
   }, []);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
+  /* ---------------- ADD USER ---------------- */
+  const handleAdd = async () => {
+    const res = await fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: "New User",
+        email: "new@gmail.com"
+      })
     });
+
+    const data = await res.json();
+    setStudents([...students, data]);
+
+    setMessage("✅ User Added!");
+    setTimeout(() => setMessage(""), 2000);
   };
 
-  // 🟢 Add student dynamically
-  const handleSubmit = () => {
-    const newStudent = {
-      id: students.length + 1,
-      name: formData.name,
-      course: formData.course
-    };
+  /* ---------------- OPEN MODAL ---------------- */
+  const handleUpdate = (id) => {
+    const user = students.find(u => u._id === id);
 
-    setStudents([...students, newStudent]);
-
-    setFormData({
-      name: "",
-      course: ""
+    setSelectedId(id);
+    setEditData({
+      name: user.name,
+      email: user.email
     });
+
+    setShowModal(true);
+  };
+
+  /* ---------------- SUBMIT UPDATE ---------------- */
+  const submitUpdate = async () => {
+    await fetch(`http://localhost:3000/users/${selectedId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(editData)
+    });
+
+    const res = await fetch("http://localhost:3000/users");
+    const data = await res.json();
+    setStudents(data);
+
+    setShowModal(false);
+    setEditData({ name: "", email: "" });
+
+    setMessage("✏️ Updated Successfully!");
+    setTimeout(() => setMessage(""), 2000);
+  };
+
+  /* ---------------- LOGIN ---------------- */
+  const handleLogin = async () => {
+    const res = await fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: "test@gmail.com"
+      })
+    });
+
+    const data = await res.json();
+    localStorage.setItem("token", data.token);
+
+    setMessage("🔐 Login Successful!");
+    setTimeout(() => setMessage(""), 2000);
+  };
+
+  /* ---------------- PROFILE ---------------- */
+  const getProfile = async () => {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch("http://localhost:3000/profile", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    setMessage("👀 Check Console!");
+    setTimeout(() => setMessage(""), 2000);
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "linear-gradient(to right, #667eea, #764ba2)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "30px",
-        fontFamily: "Arial"
-      }}
-    >
-      <h1 style={{ color: "white" }}>🎓 Student Dashboard</h1>
+    <div style={mainContainer}>
+      <h1 style={title}>🎓 Student Dashboard</h1>
 
-      {/* Student Card */}
-      <StudentCard
-        name="Subaranjani"
-        course="Full Stack Development"
-        status="Active"
-      />
+      {/* Popup */}
+      {message && <div style={popupStyle}>{message}</div>}
 
-      {/* Input Section */}
-      <div style={cardStyle}>
-        <h3>Input Section</h3>
-
-        <input
-          type="text"
-          placeholder="Type something..."
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          style={inputStyle}
-        />
-
-        <button
-          onClick={() => console.log(inputValue)}
-          style={blueBtn}
-        >
-          Submit
-        </button>
+      {/* Profile */}
+      <div style={profileCard}>
+        <h2>Subaranjani</h2>
+        <p>🚀 Full Stack Developer</p>
+        <span style={status}>● Active</span>
       </div>
 
-      {/* Form Section */}
-      <div style={cardStyle}>
-        <h3>Student Form</h3>
-
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter your name"
-          value={formData.name}
-          onChange={handleChange}
-          style={inputStyle}
-        />
-
-        <input
-          type="text"
-          name="course"
-          placeholder="Enter your course"
-          value={formData.course}
-          onChange={handleChange}
-          style={inputStyle}
-        />
-
-        <button onClick={handleSubmit} style={greenBtn}>
-          Add Student
-        </button>
+      {/* Buttons */}
+      <div style={buttonGroup}>
+        <button style={btn} onClick={handleAdd}>➕ Add User</button>
+        <button style={btn} onClick={handleLogin}>🔐 Login</button>
+        <button style={btn} onClick={getProfile}>👤 Profile</button>
       </div>
 
-      {/* 🔵 Student List */}
-      <div style={cardStyle}>
-        <h3>Student List</h3>
+      <h2 style={{ marginTop: "40px" }}>👥 Users</h2>
 
-        {students.map((student) => (
-          <p key={student.id}>
-            {student.name} - {student.course}
-          </p>
+      {/* Users */}
+      <div style={grid}>
+        {students.map((user) => (
+          <div key={user._id} style={userCard}>
+            <h3>{user.name}</h3>
+            <p>{user.email}</p>
+
+            <button
+              style={updateBtn}
+              onClick={() => handleUpdate(user._id)}
+            >
+              ✏️ Update
+            </button>
+          </div>
         ))}
       </div>
 
-      {/* 🟣 API Users */}
-      <div style={cardStyle}>
-        <h3>API Users</h3>
+      {/* MODAL */}
+      {showModal && (
+        <div style={overlay}>
+          <div style={modal}>
+            <h2>✏️ Update User</h2>
 
-        {users.map((user) => (
-          <p key={user.id}>{user.name}</p>
-        ))}
-      </div>
+            <input
+              type="text"
+              placeholder="Enter Name"
+              value={editData.name}
+              onChange={(e) =>
+                setEditData({ ...editData, name: e.target.value })
+              }
+              style={input}
+            />
+
+            <input
+              type="text"
+              placeholder="Enter Email"
+              value={editData.email}
+              onChange={(e) =>
+                setEditData({ ...editData, email: e.target.value })
+              }
+              style={input}
+            />
+
+            <div>
+              <button style={btn} onClick={submitUpdate}>Save</button>
+              <button style={btn} onClick={() => setShowModal(false)}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-// 🎨 Styles (clean UI)
-const cardStyle = {
-  background: "white",
+/* ---------------- STYLES ---------------- */
+
+const mainContainer = {
+  minHeight: "100vh",
+  background: "linear-gradient(135deg, #667eea, #764ba2)",
+  padding: "30px",
+  textAlign: "center",
+  fontFamily: "Poppins, sans-serif",
+  color: "white"
+};
+
+const title = {
+  fontSize: "32px"
+};
+
+const profileCard = {
+  background: "rgba(255,255,255,0.15)",
   padding: "20px",
-  borderRadius: "12px",
+  borderRadius: "15px",
   width: "300px",
-  boxShadow: "0 5px 15px rgba(0,0,0,0.2)",
-  marginTop: "20px",
-  textAlign: "center"
+  margin: "20px auto"
 };
 
-const inputStyle = {
-  width: "90%",
-  padding: "10px",
-  marginTop: "10px",
-  borderRadius: "8px",
-  border: "1px solid #ccc"
+const status = {
+  color: "#2ecc71"
 };
 
-const blueBtn = {
-  padding: "8px 18px",
+const buttonGroup = {
+  marginTop: "20px"
+};
+
+const btn = {
+  margin: "10px",
+  padding: "10px 18px",
   borderRadius: "8px",
   border: "none",
+  cursor: "pointer"
+};
+
+const grid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+  gap: "20px",
+  marginTop: "30px"
+};
+
+const userCard = {
+  background: "white",
+  color: "black",
+  padding: "15px",
+  borderRadius: "10px"
+};
+
+const updateBtn = {
+  marginTop: "10px",
+  padding: "6px 12px",
   background: "#667eea",
   color: "white",
-  cursor: "pointer",
-  marginTop: "15px"
+  border: "none",
+  borderRadius: "6px"
 };
 
-const greenBtn = {
-  padding: "8px 18px",
-  borderRadius: "8px",
-  border: "none",
+const popupStyle = {
+  position: "fixed",
+  top: "20px",
+  right: "20px",
   background: "#2ecc71",
   color: "white",
-  cursor: "pointer",
-  marginTop: "15px"
+  padding: "10px 20px",
+  borderRadius: "8px"
+};
+
+const overlay = {
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  background: "rgba(0,0,0,0.6)",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center"
+};
+
+const modal = {
+  background: "white",
+  padding: "25px",
+  borderRadius: "12px",
+  textAlign: "center",
+  color: "black",
+  width: "300px",
+  boxShadow: "0 10px 30px rgba(0,0,0,0.3)"
+};
+
+const input = {
+  width: "90%",
+  padding: "10px",
+  margin: "10px 0",
+  borderRadius: "8px",
+  border: "1px solid #ccc",
+  color: "black"
 };
 
 export default App;
